@@ -37,6 +37,20 @@ Use this Skill for deployment, runtime configuration, DNS/CDN, and production in
 
 TODO: confirm exact Railway environment variable naming conventions for each service.
 
+## Production Database Sync Checks
+
+For IPcheap dynamic proxy pricing, production PostgreSQL must include:
+
+- `global_tier_prices.site_code`, defaulting to `ztproxy`.
+- Unique constraint on
+  `(site_code, product_id, min_traffic, max_traffic)` for global tier prices.
+- `dynamic_orders.source_site`, defaulting to `ztproxy`.
+- Indexes on both new site/source columns.
+
+Use migrations where possible. If the user explicitly authorizes direct
+production repair, keep SQL idempotent, disable GSS for Railway PostgreSQL
+clients, force SSL, and report only schema/object names and outcomes.
+
 ## Safety
 
 - Never reveal real secret values from `.env`, Railway variables, Cloudflare, Aliyun, payment, email, or supplier configs.

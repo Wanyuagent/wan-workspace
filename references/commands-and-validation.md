@@ -82,3 +82,25 @@ Directory: `wanyu-FPBrowser`
 - Database schema change: migration creation/review plus `alembic upgrade head` in a safe local/test environment.
 - Shared Wanyu package change: monorepo typecheck/test plus relevant app build when feasible.
 - Deployment change: run the build command and inspect start/healthcheck config. Provider-side verification may require Railway/Aliyun/Cloudflare access.
+
+## IPcheap Dynamic Proxy Production Smoke
+
+Use this only with explicit production-test approval.
+
+- Backend login: `POST $IPPROXY_BACKEND_URL/api/ipcheap/auth/login`
+- Dynamic products: `GET $IPPROXY_BACKEND_URL/api/ipcheap/dynamic-products`
+- Dynamic order: `POST $IPPROXY_BACKEND_URL/api/ipcheap/dynamic-orders`
+- Dynamic order list: `GET $IPPROXY_BACKEND_URL/api/ipcheap/dynamic-orders`
+
+Validation expectations:
+
+- Dynamic products should only show products with `site_code='ipcheap'`
+  dynamic tier prices configured.
+- A smoke dynamic order should write `dynamic_orders.source_site='ipcheap'`.
+- Transaction records should show the user consumption and related agent/admin
+  accounting records when applicable.
+- Returned proxy credentials should be verified with an HTTP proxy request,
+  such as `curl --proxy "$PROXY_URL" "http://api.ipify.org?format=json"`.
+
+Keep all credentials and tokens in local environment variables; do not add them
+to docs, commits, shell history snippets, or final reports.

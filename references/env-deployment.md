@@ -47,6 +47,14 @@ Known IPcheap Railway behavior from `railway.json`:
 - Start command: `npm run start`
 - Healthcheck path: `/healthz`
 
+IPcheap dynamic proxy production checks require local-only values for:
+
+- `IPPROXY_BACKEND_URL`
+- `IPCHEAP_SMOKE_EMAIL`
+- `IPCHEAP_SMOKE_PASSWORD`
+- `DATABASE_URL`
+- Optional Railway access token or logged-in Railway CLI session for logs.
+
 TODO: confirm detailed Railway production variable naming conventions.
 
 ## Aliyun OSS/CDN
