@@ -29,6 +29,14 @@ Use this Skill for deployment, runtime configuration, DNS/CDN, and production in
 4. For database work, prefer backups and migrations. Avoid direct mutation unless the user explicitly asks.
 5. Report what was verified locally and what still requires provider-side confirmation.
 
+## Railway Service Names
+
+- `Frontend`: ztproxy frontend.
+- `Backend`: ztproxy backend.
+- `IPcheap`: IPcheap frontend.
+
+TODO: confirm exact Railway environment variable naming conventions for each service.
+
 ## Safety
 
 - Never reveal real secret values from `.env`, Railway variables, Cloudflare, Aliyun, payment, email, or supplier configs.

@@ -10,6 +10,7 @@ Use this Skill for UI, client-side API, routing, i18n, and desktop renderer work
 ## Pick The App
 
 - IPProxy admin/proxy frontend: `IPProxy/src`
+- `IPProxy/frontend` is not currently used.
 - IPcheap sales frontend: `IPcheap/src`
 - Wanyu web/console: `wanyu-FPBrowser/apps/web-marketing/src`
 - Wanyu desktop renderer: `wanyu-FPBrowser/apps/desktop/src/renderer/src`
@@ -45,6 +46,7 @@ Use this Skill for UI, client-side API, routing, i18n, and desktop renderer work
 - Use existing Ant Design and local component patterns.
 - Do not introduce new UI frameworks without explicit approval.
 - Do not hardcode production API URLs when env-based configuration exists.
+- IPProxy API base path is `/api`; current frontend/client entrypoint is `https://backend-production-127a.up.railway.app`, with planned reverse proxy `https://api.wanyuagent.com/v1/api`.
 
 ## References
 

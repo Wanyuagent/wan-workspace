@@ -2,6 +2,12 @@
 
 This file records discovered structure for wan-workspace. Keep it factual and update it when directories move.
 
+Current IPProxy API:
+
+- Base path: `/api`
+- Current frontend/client entrypoint: `https://backend-production-127a.up.railway.app`
+- Planned reverse-proxy entrypoint: `https://api.wanyuagent.com/v1/api`
+
 ## Root
 
 - `IPProxy/`: core IP proxy platform.
@@ -19,6 +25,7 @@ The root directory is not currently a git repository. `IPProxy`, `IPcheap`, and 
   - `index.html`
   - `vite.config.ts`
   - `package.json`
+  - `frontend` exists but is not currently used.
 - Backend:
   - `backend/app/main.py`
   - `backend/app/routers`
@@ -50,8 +57,6 @@ The root directory is not currently a git repository. `IPProxy`, `IPcheap`, and 
   - `start-railway.sh`
   - `docker-compose.yml`
   - `.github/workflows`
-
-TODO: confirm whether `IPProxy/frontend` is active, legacy, or alternate packaging.
 
 ## IPcheap
 

@@ -8,6 +8,12 @@ This workspace coordinates three related products:
 
 The core production dependency is `IPProxy/backend` and its Railway PostgreSQL database. Treat `IPcheap` and `wanyu-FPBrowser` as API consumers unless the task proves otherwise.
 
+Current IPProxy API:
+
+- Base path: `/api`
+- Current frontend/client entrypoint: `https://backend-production-127a.up.railway.app`
+- Planned reverse-proxy entrypoint: `https://api.wanyuagent.com/v1/api`
+
 ## First Steps
 
 1. Read this file before editing.
@@ -19,7 +25,8 @@ The core production dependency is `IPProxy/backend` and its Railway PostgreSQL d
 ## Project Map
 
 - Frontend apps:
-  - `IPProxy/src`, `IPProxy/index.html`, `IPProxy/vite.config.ts`
+  - `IPProxy/src`, `IPProxy/index.html`, `IPProxy/vite.config.ts` is the active ztproxy frontend.
+  - `IPProxy/frontend` is not currently used.
   - `IPcheap/src`, `IPcheap/index.html`, `IPcheap/vite.config.ts`
   - `wanyu-FPBrowser/apps/web-marketing/src`
   - `wanyu-FPBrowser/apps/desktop/src/renderer/src`
@@ -51,6 +58,12 @@ The core production dependency is `IPProxy/backend` and its Railway PostgreSQL d
   - `wanyu-FPBrowser/apps/web-marketing/.env.oss.example`
   - TODO: create sanitized examples for `wanyu-FPBrowser/apps/desktop` if desktop env variables become stable.
 
+Railway service names:
+
+- `Frontend`: ztproxy frontend.
+- `Backend`: ztproxy backend.
+- `IPcheap`: IPcheap frontend.
+
 More detail lives in `references/`.
 
 ## Real Commands Found
@@ -73,9 +86,10 @@ Run commands from the directory shown.
 - `cd IPProxy/backend && alembic upgrade head`
 - `cd IPProxy/backend && ./run_lm_tests.sh`
 - `cd IPProxy/backend && ./run_usdt_tests.sh`
+- `cd IPProxy && ./start-service.sh`
 
 Python dependencies are declared in `IPProxy/backend/requirements.txt` and `IPProxy/backend/requirements-test.txt`.
-TODO: confirm the preferred local FastAPI start command before documenting it as standard.
+The standard local IPProxy backend start command used by the project owner is `cd IPProxy && ./start-service.sh`.
 
 ### IPProxy Agent(Not used)
 
@@ -143,8 +157,6 @@ When a Skill references `../../references/*.md`, load only the reference needed 
 
 ## Open TODOs
 
-- TODO: confirm canonical local backend start command and whether backend should always run from `IPProxy/backend` or sometimes `IPProxy`.
-- TODO: confirm production service names and environment variable names in Railway and Cloudflare.
-- TODO: confirm current IPProxy public API base URL(s) used by IPcheap and wanyu-FPBrowser.
+- TODO: confirm detailed Railway variable naming conventions beyond service names.
+- TODO: confirm Cloudflare production DNS/CDN rules.
 - TODO: confirm intended test runner for `IPcheap`.
-- TODO: confirm whether root-level `IPProxy/src` is still the active frontend or whether `IPProxy/frontend` is legacy/alternate.

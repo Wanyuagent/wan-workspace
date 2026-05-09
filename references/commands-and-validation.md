@@ -25,8 +25,9 @@ Directory: `IPProxy/backend`
 - `./run_lm_query_tests.sh`
 - `./run_lm_range_test.sh`
 - `./run_lm_sync_test.sh`
+- From `IPProxy` root: `./start-service.sh`
 
-TODO: confirm canonical local API server start command.
+The project owner uses `cd IPProxy && ./start-service.sh` as the standard local backend start command.
 
 ## IPProxy Agent
 

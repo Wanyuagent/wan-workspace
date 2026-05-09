@@ -9,7 +9,7 @@ Use this Skill for changes or investigations under `IPProxy/backend`, database s
 
 ## Workflow
 
-1. Start in `IPProxy/backend` unless the task explicitly targets root-level IPProxy scripts.
+1. Start in `IPProxy/backend` for backend code reading. Use `IPProxy` root for project scripts such as `./start-service.sh`.
 2. Inspect the affected router, schema, model, service, and CRUD/database code before editing:
    - Routers: `app/routers`
    - Schemas: `app/schemas`
@@ -31,8 +31,15 @@ Use this Skill for changes or investigations under `IPProxy/backend`, database s
 - `cd IPProxy/backend && alembic upgrade head`
 - `cd IPProxy/backend && ./run_lm_tests.sh`
 - `cd IPProxy/backend && ./run_usdt_tests.sh`
+- `cd IPProxy && ./start-service.sh`
 
-TODO: confirm canonical local FastAPI start command before documenting it as required.
+The standard local backend start command used by the project owner is `cd IPProxy && ./start-service.sh`.
+
+## API Entrypoints
+
+- Base path: `/api`
+- Current frontend/client entrypoint: `https://backend-production-127a.up.railway.app`
+- Planned reverse-proxy entrypoint: `https://api.wanyuagent.com/v1/api`
 
 ## Safety
 

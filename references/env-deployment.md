@@ -29,13 +29,25 @@ Known Railway-related files:
 - `IPProxy/Agent/railway.toml`
 - `IPcheap/railway.json`
 
+Known Railway service names:
+
+- `Frontend`: ztproxy frontend.
+- `Backend`: ztproxy backend.
+- `IPcheap`: IPcheap frontend.
+
+Known IPProxy API routing:
+
+- Base path: `/api`
+- Current frontend/client entrypoint: `https://backend-production-127a.up.railway.app`
+- Planned reverse-proxy entrypoint: `https://api.wanyuagent.com/v1/api`
+
 Known IPcheap Railway behavior from `railway.json`:
 
 - Build command: `npm run build`
 - Start command: `npm run start`
 - Healthcheck path: `/healthz`
 
-TODO: confirm current Railway service names and production variable names.
+TODO: confirm detailed Railway production variable naming conventions.
 
 ## Aliyun OSS/CDN
 
