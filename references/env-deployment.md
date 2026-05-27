@@ -41,6 +41,85 @@ Known IPProxy API routing:
 - Current frontend/client entrypoint: `https://backend-production-127a.up.railway.app`
 - Planned reverse-proxy entrypoint: `https://api.wanyuagent.com/v1/api`
 
+## IPProxy Environment Access
+
+Do not store real admin passwords, database passwords, Railway tokens, or full PostgreSQL URLs in this file. Keep secret values in the team password manager, Railway variables, or MCP-backed secret/log access.
+
+### Production
+
+- Backend host: `https://backend-production-127a.up.railway.app`
+- Login endpoint: `POST /api/auth/login`
+- Admin username: `admin`
+- Admin password: get from the password manager or Railway/MCP secret source.
+- Auth token response path: `data.token`
+- Railway logs: prefer MCP Railway log access when available; otherwise use the approved Railway CLI/log workflow.
+- Database access:
+  - Preferred: MCP database access.
+  - Fallback: Python or `psql` with GSS disabled and SSL required.
+  - DSN template: `postgresql://postgres:<PRODUCTION_DB_PASSWORD>@ballast.proxy.rlwy.net:55627/railway`
+  - Required connection flags when using libpq-compatible tools: `gssencmode=disable` and `sslmode=require`
+
+Example login shape:
+
+```bash
+curl -sS https://backend-production-127a.up.railway.app/api/auth/login \
+  -H 'content-type: application/json' \
+  -d '{"username":"admin","password":"<ADMIN_PASSWORD>"}'
+```
+
+Expected token extraction:
+
+```text
+data.token
+```
+
+### Staging
+
+- Backend host: `https://backend-staging-3785.up.railway.app`
+- Login endpoint: `POST /api/auth/login`
+- Admin username: `admin`
+- Admin password: get from the password manager or Railway/MCP secret source.
+- Auth token response path: `data.token`
+- Status note: user-provided latest check says this environment is available.
+- Railway logs: prefer MCP Railway log access when available; otherwise use the approved Railway CLI/log workflow.
+- Database access:
+  - Preferred: MCP database access.
+  - Fallback: Python or `psql` with GSS disabled and SSL required.
+  - DSN template: `postgresql://postgres:<STAGING_DB_PASSWORD>@kodama.proxy.rlwy.net:20782/railway`
+  - Required connection flags when using libpq-compatible tools: `gssencmode=disable` and `sslmode=require`
+
+Example login shape:
+
+```bash
+curl -sS https://backend-staging-3785.up.railway.app/api/auth/login \
+  -H 'content-type: application/json' \
+  -d '{"username":"admin","password":"<ADMIN_PASSWORD>"}'
+```
+
+Expected token extraction:
+
+```text
+data.token
+```
+
+### Python DB Fallback Pattern
+
+Use this only when MCP database access is unavailable. Read the actual database password from a local secret source, not from repository files.
+
+```python
+import psycopg2
+
+conn = psycopg2.connect(
+    "postgresql://postgres:<DB_PASSWORD>@<HOST>:<PORT>/railway",
+    sslmode="require",
+    gssencmode="disable",
+)
+
+with conn, conn.cursor() as cur:
+    cur.execute("select 1")
+    print(cur.fetchone())
+```
+
 Known IPcheap Railway behavior from `railway.json`:
 
 - Build command: `npm run build`
