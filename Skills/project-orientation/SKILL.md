@@ -34,4 +34,7 @@ Use this Skill before cross-project work or when the affected area is unclear.
 - Do not invent missing commands.
 - Do not expose secret values from `.env` files.
 - Do not refactor unrelated code while orienting.
+- For wanyu-FPBrowser or fingerprint-browser development, treat `IPProxy/backend`
+  as a stable external API provider. Do not modify or deploy IPProxy backend code
+  unless the user explicitly asks for an IPProxy backend change.
 - Mark uncertain findings with `TODO:` instead of presenting them as fact.

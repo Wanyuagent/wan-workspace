@@ -46,6 +46,9 @@ Use this Skill for UI, client-side API, routing, i18n, and desktop renderer work
 - Use existing Ant Design and local component patterns.
 - Do not introduce new UI frameworks without explicit approval.
 - Do not hardcode production API URLs when env-based configuration exists.
+- When developing wanyu-FPBrowser or fingerprint-browser purchase/proxy flows,
+  do not modify `IPProxy/backend`; adapt the Wanyu API client, desktop main
+  process, renderer, QA bridge, or local caching to the stable IPProxy API.
 - IPProxy API base path is `/api`; current frontend/client entrypoint is `https://backend-production-127a.up.railway.app`, with planned reverse proxy `https://api.wanyuagent.com/v1/api`.
 
 ## References
