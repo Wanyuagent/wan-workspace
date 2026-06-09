@@ -16,13 +16,14 @@ Use this Skill for changes or investigations under `IPProxy/backend`, database s
    - Models: `app/models`
    - Services: `app/services`
    - Migrations: `alembic/versions`
-3. For API contract changes, check consumers:
+3. Do not modify existing API behavior or contracts unless the user explicitly asks for that exact API change. For new capabilities, prefer adding clearly named new endpoints and documenting them.
+4. For API contract changes, check consumers:
    - `IPProxy/src/services` and `IPProxy/src/api`
    - `IPcheap/src/services`
    - `wanyu-FPBrowser/packages/api-client`
    - Wanyu app-local clients under `apps/*/src/**/api`
-4. For schema changes, add or update an Alembic migration. Do not rely on ad hoc SQL as the long-term fix.
-5. Validate with targeted `pytest` where possible.
+5. For schema changes, add or update an Alembic migration. Do not rely on ad hoc SQL as the long-term fix.
+6. Validate with targeted `pytest` where possible.
 
 ## Known Commands
 
