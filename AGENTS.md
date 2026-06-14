@@ -127,6 +127,7 @@ The standard local IPProxy backend start command used by the project owner is `c
 - Keep changes scoped to the product being touched. Cross-project API changes require checking both provider and consumers.
 - Preserve existing stacks: React/Vite/Ant Design for web, Electron/Vite for desktop, FastAPI/SQLAlchemy/Alembic for backend, Prisma/Fastify for Agent.
 - For IPProxy API changes, inspect `IPProxy/backend/app/routers`, `schemas`, `models`, and affected frontend service/client files.
+- For IPProxy public/API response changes, preserve existing response fields and meanings; prefer additive fields, and check `IPProxy/src` consumers before changing backend output so the IPProxy frontend is not broken.
 - For database changes, prefer Alembic migrations in `IPProxy/backend/alembic/versions`; do not hand-edit production databases from code changes.
 - For browser/desktop proxy flows, check `wanyu-FPBrowser/packages/api-client` before duplicating request logic.
 - For UI work, keep operational screens dense and task-oriented. Avoid marketing-style layouts in admin consoles.
