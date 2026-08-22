@@ -1,0 +1,4 @@
+interface:
+  display_name: "万域发布与回归"
+  short_description: "Safely close Wanyu releases and production regression"
+  default_prompt: "Use $wanyu-release-ops to publish the scoped Wanyu changes and verify the real production path."

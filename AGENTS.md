@@ -156,6 +156,7 @@ Project Skills live under `Skills/`:
 - `Skills/frontend-apps`: use for IPProxy frontend, IPcheap, Wanyu web, Electron renderer, shared UI, i18n, and API clients.
 - `Skills/deploy-ops`: use for Railway, Aliyun OSS/CDN, Cloudflare, env, logs, and deployment investigations.
 - `Skills/qa-debugging`: use for tests, regressions, smoke checks, and bug reproduction.
+- `Skills/wanyu-release-ops`: use for scoped commits, Web/desktop tags, Railway and OSS/CDN deployment, production schema verification, release artifact checks, and browser regression closure.
 
 When a Skill references `../../references/*.md`, load only the reference needed for the task.
 

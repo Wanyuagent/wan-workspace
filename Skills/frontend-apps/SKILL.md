@@ -55,3 +55,6 @@ Use this Skill for UI, client-side API, routing, i18n, and desktop renderer work
 
 - Read `../../references/commands-and-validation.md` for command details.
 - Read `../../references/env-deployment.md` for known env/deployment files.
+- For Wanyu marketing homepage reconstruction, screenshot-comment iteration,
+  background blending, third-party platform notices, and commercial-copy review,
+  read `references/wanyu-marketing-homepage.md` before editing.
