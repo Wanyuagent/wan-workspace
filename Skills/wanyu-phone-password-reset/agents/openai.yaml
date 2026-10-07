@@ -1,0 +1,4 @@
+interface:
+  display_name: "万域手机号密码重置"
+  short_description: "实现并验证万域手机号短信自助重置密码完整流程与安全控制"
+  default_prompt: "使用 $wanyu-phone-password-reset 实现并验证万域手机号短信自助重置密码流程。"

@@ -156,11 +156,77 @@ Secret names referenced by the workflow include:
 - `WEB_VITE_API_BASE`
 - `WEB_VITE_DOWNLOAD_BASE`
 
+Confirmed Wanyu production Web mapping (verified 2026-09-23):
+
+- Public canonical site: `https://www.wanyuagent.com`
+- Aliyun CDN CNAME: `www.wanyuagent.com.w.kunlunaq.com`
+- CDN origin: `wanyufb.oss-cn-shenzhen.aliyuncs.com`
+- Cloudflare `www` record: CNAME to the Aliyun CDN CNAME, DNS-only (gray cloud)
+- `index.html`: `Cache-Control: no-cache,max-age=0`
+- Hashed `/assets/*`: `Cache-Control: public,max-age=31536000,immutable`
+
+The Railway backend host is an API endpoint, not a valid target for the homepage DNS.
+
+Release verification should correlate the annotated `web-v*` tag timestamp with fresh
+OSS `Last-Modified`/ETag values, then verify every asset referenced by `index.html` returns
+`200` through the CDN. This still does not replace checking the private GitHub Actions run
+when authenticated access is available.
+
 ## Cloudflare
 
-Cloudflare DNS/CDN is part of the operating environment but provider config was not found in the scanned repository files.
+Confirmed zone behavior for `wanyuagent.com`:
 
-TODO: document zone names, DNS records, proxied status, SSL mode, cache rules, and origin mapping when the user provides them.
+- `www.wanyuagent.com` remains DNS-only so Aliyun CDN terminates HTTPS and serves the site.
+- The apex `wanyuagent.com` is proxied by Cloudflare and uses a Redirect Rule from apex to
+  `https://www.wanyuagent.com`, preserving the path and query string with status `301`.
+- The apex redirect depends on an active Cloudflare edge certificate for
+  `wanyuagent.com`; a certificate failure occurs before the redirect rule can execute.
+- `api.wanyuagent.com`, `download.wanyuagent.com`, MX, DKIM, SPF, and verification records
+  are separate services and must not be changed during homepage recovery.
+
+When validating DNS changes, distinguish resolver propagation from origin/CDN health.
+Query public DNS, then inspect HTTPS headers from both the apex and `www` host. A healthy
+`www` site can coexist with a broken apex redirect.
+
+## Local GitHub CLI Access (macOS Apple Silicon)
+
+The development Mac is `arm64`. A legacy symlink may exist at `/usr/local/bin/git`
+pointing to an old `x86_64` Homebrew Git. If `gh auth setup-git` reports
+`bad CPU type in executable`, do not repeat authentication first; fix Git selection.
+
+Preferred setup:
+
+```bash
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew install git
+hash -r
+which git
+file "$(which git)"
+```
+
+Expected Git path and architecture:
+
+```text
+/opt/homebrew/bin/git
+Mach-O 64-bit executable arm64
+```
+
+Then configure and verify GitHub CLI without printing credentials:
+
+```bash
+gh auth login -h github.com -p https -w
+gh auth setup-git
+gh auth status
+git ls-remote origin HEAD
+gh run list --limit 5
+```
+
+Keep Homebrew first in Bash by loading `brew shellenv` from `~/.bash_profile`. Moving the
+legacy `/usr/local/bin/git` symlink aside is optional and should be explicit/recoverable.
+Never record one-time device codes or OAuth tokens in project documentation.
+
+TODO: confirm the current Cloudflare SSL mode and any cache rules beyond the documented
+Aliyun origin headers.
 
 ## Sensitive Areas
 

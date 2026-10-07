@@ -51,6 +51,24 @@ Use migrations where possible. If the user explicitly authorizes direct
 production repair, keep SQL idempotent, disable GSS for Railway PostgreSQL
 clients, force SSL, and report only schema/object names and outcomes.
 
+## Wanyu Web Release Verification
+
+Treat these as separate evidence levels:
+
+1. The `web-v*` tag exists locally and on the remote, and resolves to the intended commit.
+2. The `web-deploy-oss.yml` workflow completed, when authenticated GitHub Actions access is available.
+3. The production `index.html` has a release-time OSS `Last-Modified`/ETag and references current hashed assets.
+4. The referenced JavaScript and CSS return `200` through `www.wanyuagent.com` and Aliyun CDN.
+5. The apex-domain redirect and its Cloudflare edge certificate work independently of the `www` deployment.
+
+Do not treat a pushed tag alone as proof of deployment. Conversely, fresh OSS/CDN
+artifacts with timestamps immediately following the tag are strong production evidence
+when the private Actions UI is unavailable. Report an apex TLS failure separately when
+`www.wanyuagent.com` is already healthy.
+
+For current Wanyu DNS/CDN mappings and local GitHub CLI repair notes, read
+`../../references/env-deployment.md`.
+
 ## Safety
 
 - Never reveal real secret values from `.env`, Railway variables, Cloudflare, Aliyun, payment, email, or supplier configs.

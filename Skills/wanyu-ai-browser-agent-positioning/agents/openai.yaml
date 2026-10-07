@@ -1,0 +1,4 @@
+interface:
+  display_name: "万域AI浏览器与Agent定位"
+  short_description: "准确说明万域AI指纹浏览器、MCP、Codex与腾讯WorkBuddy的能力和边界"
+  default_prompt: "请基于万域现有能力，准确说明AI指纹浏览器、MCP以及Codex或腾讯WorkBuddy的产品价值、接入方式和实现边界。"

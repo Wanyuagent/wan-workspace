@@ -157,7 +157,10 @@ Project Skills live under `Skills/`:
 - `Skills/deploy-ops`: use for Railway, Aliyun OSS/CDN, Cloudflare, env, logs, and deployment investigations.
 - `Skills/qa-debugging`: use for tests, regressions, smoke checks, and bug reproduction.
 - `Skills/wanyu-release-ops`: use for scoped commits, Web/desktop tags, Railway and OSS/CDN deployment, production schema verification, release artifact checks, and browser regression closure.
+- `Skills/wanyu-plugin-mcp-console`: use for Wanyu Plugin Center plugin-to-environment workflows and user-facing MCP / Agent console implementation, review, testing, or capability explanations.
 - `Skills/wanyu-codex-mcp-integration`: use for secure local MCP authentication, one-click Codex connection, constrained browser tools, desktop IPC/UI wiring, and Codex integration validation.
+- `Skills/wanyu-windows-sdk-regression`: use for Windows environment-list, launch-config, WYSDK authorization/role, system-proxy CONNECT, kernel-catalog, plugin-API, diagnostic-redaction, and related release regressions.
+- `Skills/github-repository-access`: use for GitHub collaborator permissions, Read/Write diagnosis, push 403 errors, repository-target verification, and post-change effective-access checks.
 
 When a Skill references `../../references/*.md`, load only the reference needed for the task.
 

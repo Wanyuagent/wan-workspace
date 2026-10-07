@@ -55,6 +55,8 @@ Windows release locations currently follow:
 
 Verify these paths against the current workflow because release configuration can change.
 
+When the website publishes a desktop download version, release the desktop artifact first. Confirm its public metadata and installer are reachable before tagging the Web build; otherwise the newly deployed website can advertise a client that is not yet downloadable. For the full website/Web Console/desktop workflow, read [references/website-console-desktop-release.md](references/website-console-desktop-release.md).
+
 ## 5. Deploy the backend
 
 1. Check the linked Railway project, environment, service, root directory, and latest deployments.

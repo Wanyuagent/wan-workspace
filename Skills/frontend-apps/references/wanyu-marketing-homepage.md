@@ -1,6 +1,6 @@
-# Wanyu Marketing Homepage Iteration
+# Wanyu Marketing Visual Reconstruction
 
-Use this reference when reconstructing or reviewing the Wanyu marketing homepage from screenshots, technical-delivery folders, or browser annotations.
+Use this reference when reconstructing or reviewing the Wanyu marketing homepage or related public pages from screenshots, technical-delivery folders, or browser annotations.
 
 ## Scope First
 
@@ -58,6 +58,36 @@ Use image edge fading only after the page background is continuous. Excessive ma
 - Change one visual cause at a time when the user is comparing screenshots.
 - When the user says “先讨论”, make no file changes until they approve a direction.
 - If the page appears unchanged, check `http://127.0.0.1:5173` before assuming the code was not applied. Restart `pnpm dev:web` when the server is stopped, then navigate to the exact hash route.
+
+## Multi-Page Effect-Image Comparison
+
+When the user supplies a directory of page effect images:
+
+1. Inventory the image filenames, dimensions, and visible page titles, then map each image to the real hash route before editing.
+2. Inspect both the current production route and the local source. Production is the behavioral baseline; the supplied image is the visual target.
+3. Resolve conflicts using the newest explicit user instruction. A stale effect image must not restore a route, navigation item, label, or section the user has since removed. For example, do not re-add an independent scene page after the user has moved that content to the homepage second viewport and removed its navigation entry.
+4. Match the reference's section order, hierarchy, spacing, typography, card geometry, illustration placement, and responsive behavior while preserving live functionality.
+5. Preserve verified runtime data and destinations, including download URLs, release metadata, authentication links, support contacts, and API-backed values. Do not replace them with static values merely because a mockup displays them.
+6. Treat prices, performance figures, customer counts, coverage claims, and guarantees shown in mockups as unverified until supported by current product data or explicit user approval.
+
+For each affected route, check:
+
+- expected section count and order
+- primary headings and calls to action
+- header/footer consistency
+- viewport width equals document width at desktop and mobile sizes
+- no clipped text, collapsed cards, missing assets, or unintended horizontal scroll
+- no stale navigation or route restored from an older screenshot
+
+## Screenshot Delivery
+
+Visual completion requires comparison artifacts, not only a successful build.
+
+1. Capture a full-page desktop screenshot at the reference width when known; use `1440px` when the supplied effect image is 1440 pixels wide.
+2. Also inspect a narrow mobile viewport such as `390px`; capture it when mobile comparison is requested or a responsive issue is found.
+3. Save review images under `artifacts/marketing-page-comparison/` using stable numbered names, for example `01-功能介绍-修改后.png`.
+4. Verify each saved PNG exists and has plausible dimensions before reporting it. A browser tool's stitched preview can look segmented even when the output file is valid.
+5. Return clickable absolute file links so the user can compare the revised pages directly.
 
 ## Commercial Copy Guardrails
 
